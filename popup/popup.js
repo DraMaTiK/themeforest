@@ -1,9 +1,12 @@
-const stateButton = document.getElementById("state");
+const stateButton = document.getElementById("prod");
 
+if (localStorage.getItem("PROD") === null) {
+    localStorage.setItem("PROD", "false")
+}
 
-chrome.storage.sync.get(['STATE'], function (data) {
+chrome.storage.sync.get(['PROD'], function (data) {
 
-    if (data.STATE === true) {
+    if (data.PROD === true) {
         stateButton.setAttribute("checked", 'true')
     } else {
         stateButton.removeAttribute("checked")
@@ -12,6 +15,6 @@ chrome.storage.sync.get(['STATE'], function (data) {
 });
 
 updateButton.addEventListener(`click`, function Settings() {
-    chrome.storage.sync.set({'STATE': stateButton.checked});
+    chrome.storage.sync.set({'PROD': stateButton.checked});
     window.close();
 })

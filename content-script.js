@@ -67,8 +67,12 @@ window.addEventListener('load', function () {
     data.append('features', JSON.stringify(features)); // Ajout des breadcrumbs
     data.append('compatibilityData', JSON.stringify(compatibilityData));
 
+    url = 'https://www.websource.fr';
+    if ('true' === localStorage.getItem("PROD")) {
+        url = 'https://jonathan-websource.websrc.fr';
+    }
     // Envoi de la requête POST
-    fetch('https://jonathan-websource.websrc.fr/envato/theme', {
+    fetch(url + '/envato/theme', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
